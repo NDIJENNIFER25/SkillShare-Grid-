@@ -19,4 +19,5 @@ message CalculatorResponse {
   string operation = 2;
   bool success = 3;
   string error = 4;
+
 }
