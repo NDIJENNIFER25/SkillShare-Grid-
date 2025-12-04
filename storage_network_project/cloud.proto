@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package cloud;
+
+service CloudService {
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc Enroll (EnrollRequest) returns (EnrollResponse);
+  rpc Heartbeat (HeartbeatRequest) returns (HeartbeatResponse);
+  rpc GetNodes (NodesRequest) returns (NodesResponse);
+  rpc VerifyOTP (OTPRequest) returns (OTPResponse);
+}
+
+message RegisterRequest {
+  string node_id = 1;
+  int32 port = 2;
+  string username = 3;
+  string password = 4;
+  int64 storage_capacity = 5;
+}
+
+message RegisterResponse {
+  bool success = 1;
+  string message = 2;
+  string otp = 3;
+  string email = 4;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string message = 2;
+  string otp = 3;
+  string email = 4;
+}
+
+message EnrollRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message EnrollResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message HeartbeatRequest {
+  string node_id = 1;
+}
+
+message HeartbeatResponse {
+  bool alive = 1;
+}
+
+message NodesRequest {
+}
+
+message Node {
+  string node_id = 1;
+  string ip = 2;
+  int32 port = 3;
+  int64 storage_capacity = 4;
+  string status = 5;
+  string username = 6;
+}
+
+message NodesResponse {
+  repeated Node nodes = 1;
+  int32 total_nodes = 2;
+}
+
+message OTPRequest {
+  string username = 1;
+  string otp = 2;
+}
+
+message OTPResponse {
+  bool verified = 1;
+  string message = 2;
+}

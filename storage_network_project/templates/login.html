@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Cloud Storage Network</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            background: #f3f4f6;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #667eea;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .message.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .message.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        #otpSection {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f3f4f6;
+            border-radius: 8px;
+        }
+
+        #otpSection.active {
+            display: block;
+        }
+
+        .otp-display {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .otp-display h3 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <h1>☁️ Cloud Storage</h1>
+            <p>Distributed Storage System</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('login')">Login</button>
+            <button class="tab" onclick="showTab('enroll')">Sign Up</button>
+        </div>
+
+        <!-- Login Tab -->
+        <div id="login" class="tab-content active">
+            <form onsubmit="loginUser(event)">
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div id="loginMessage"></div>
+            </form>
+
+            <!-- OTP Verification Section -->
+            <div id="otpSection">
+                <div class="otp-display">
+                    <p>Your OTP Code:</p>
+                    <h3 id="otpCode">------</h3>
+                    <small>Check your email: <span id="otpEmail"></span></small>
+                </div>
+
+                <form onsubmit="verifyOTP(event)">
+                    <div class="form-group">
+                        <label>Enter OTP Code:</label>
+                        <input type="text" id="otpInput" maxlength="6" placeholder="Enter 6-digit code" required>
+                    </div>
+                    <button type="submit" class="btn">Verify & Login</button>
+                    <div id="otpMessage"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Enroll Tab -->
+        <div id="enroll" class="tab-content">
+            <form onsubmit="enrollUser(event)">
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" id="enrollUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="enrollEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="enrollPassword" required>
+                </div>
+                <button type="submit" class="btn">Create Account</button>
+                <div id="enrollMessage"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        async function enrollUser(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('enrollUsername').value;
+            const email = document.getElementById('enrollEmail').value;
+            const password = document.getElementById('enrollPassword').value;
+
+            try {
+                const response = await fetch('/api/auth/enroll', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username, email, password})
+                });
+
+                const data = await response.json();
+                const msgDiv = document.getElementById('enrollMessage');
+
+                if (data.success) {
+                    msgDiv.className = 'message success';
+                    msgDiv.textContent = '✅ ' + data.message + ' - You can now login!';
+                    event.target.reset();
+
+                    // Switch to login tab after 2 seconds
+                    setTimeout(() => {
+                        showTab('login');
+                    }, 2000);
+                } else {
+                    msgDiv.className = 'message error';
+                    msgDiv.textContent = '❌ ' + data.message;
+                }
+            } catch (error) {
+                document.getElementById('enrollMessage').className = 'message error';
+                document.getElementById('enrollMessage').textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        async function loginUser(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username, password})
+                });
+
+                const data = await response.json();
+                const msgDiv = document.getElementById('loginMessage');
+
+                if (data.success && data.needs_otp) {
+                    msgDiv.className = 'message info';
+                    msgDiv.textContent = '📧 OTP sent! Please verify below.';
+
+                    // Show OTP section
+                    document.getElementById('otpSection').classList.add('active');
+                    document.getElementById('otpCode').textContent = data.otp;
+                    document.getElementById('otpEmail').textContent = data.email;
+
+                    // Hide login form
+                    event.target.style.display = 'none';
+                } else if (!data.success) {
+                    msgDiv.className = 'message error';
+                    msgDiv.textContent = '❌ ' + data.message;
+                }
+            } catch (error) {
+                document.getElementById('loginMessage').className = 'message error';
+                document.getElementById('loginMessage').textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        async function verifyOTP(event) {
+            event.preventDefault();
+
+            const otp = document.getElementById('otpInput').value;
+
+            try {
+                const response = await fetch('/api/auth/verify-otp', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({otp})
+                });
+
+                const data = await response.json();
+                const msgDiv = document.getElementById('otpMessage');
+
+                if (data.success) {
+                    msgDiv.className = 'message success';
+                    msgDiv.textContent = '✅ Login successful! Redirecting...';
+
+                    setTimeout(() => {
+                        window.location.href = data.redirect;
+                    }, 1000);
+                } else {
+                    msgDiv.className = 'message error';
+                    msgDiv.textContent = '❌ ' + data.message;
+                }
+            } catch (error) {
+                document.getElementById('otpMessage').className = 'message error';
+                document.getElementById('otpMessage').textContent = '❌ Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
