@@ -1,0 +1,38 @@
+{
+  "alice": {
+    "user_id": "user_97eec9b1e3beb62b",
+    "username": "alice",
+    "email": "alice@example.com",
+    "password_hash": "$2b$12$0lNGSJA0rGWFdCNbvh2kreA0c8d3JhhmVdcQIkoVcyRdTvgBZN2vW",
+    "created_at": "2025-12-05T08:49:06.676318",
+    "storage_quota_gb": 1,
+    "verified": true
+  },
+  "bob": {
+    "user_id": "user_4362b6cb12be93c3",
+    "username": "bob",
+    "email": "bob@example.com",
+    "password_hash": "$2b$12$t9INeWQXmokNNEFmCOgR7uSO1TFzJ5eiM/3nB9MLA2BUfCztwKioG",
+    "created_at": "2025-12-05T08:49:06.996393",
+    "storage_quota_gb": 1,
+    "verified": false
+  },
+  "testuser": {
+    "user_id": "user_fe0e19ce958999a6",
+    "username": "testuser",
+    "email": "ndijennifer.nkeh@ictuniversity.edu.cm",
+    "password_hash": "$2b$12$785luJx9GnwahpMFwXPcWeX3kzFUNwjsoObJltgX6mFJGvqSoP3..",
+    "created_at": "2025-12-05T08:53:36.727972",
+    "storage_quota_gb": 1,
+    "verified": true
+  },
+  "Jenn": {
+    "user_id": "user_3bb66166eed8f8bd",
+    "username": "Jenn",
+    "email": "ndijennifernkeh@gmail.com",
+    "password_hash": "$2b$12$Uhc5lGJO.H7XTFr8EeolL.nErgRghOJLrcjP6S6.CstfqAzGQuJme",
+    "created_at": "2025-12-05T18:06:24.379043",
+    "storage_quota_gb": 1,
+    "verified": true
+  }
+}
