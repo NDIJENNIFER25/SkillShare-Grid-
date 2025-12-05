@@ -61,4 +61,5 @@ def test_email_otp():
     print("=" * 70)
 
 if __name__ == '__main__':
+
     test_email_otp()
