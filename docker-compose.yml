@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- --tries=1 --timeout=2 http://localhost:3000/ || exit 1"]
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge

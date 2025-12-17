@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bank App</title>
+</head>
+<body>
+  <h1>Bank App</h1>
+
+  <h2>Login</h2>
+  <input id="username" placeholder="Username" value="customer1">
+  <input id="password" type="password" placeholder="Password" value="bank123">
+  <button onclick="login()">Login</button>
+
+  <h2>Account</h2>
+  <button onclick="getAccount()">View Account</button>
+  <button onclick="getInterest()">Check Interest</button>
+  <input id="withdrawAmount" placeholder="Amount">
+  <button onclick="withdraw()">Withdraw</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    let token = "";
+
+    async function login() {
+      const res = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: document.getElementById("username").value,
+          password: document.getElementById("password").value
+        })
+      });
+      const data = await res.json();
+      token = data.token;
+      document.getElementById("output").textContent = "Logged in! Token: " + token;
+    }
+
+    async function getAccount() {
+      const res = await fetch("http://localhost:3000/api/account", {
+        headers: { Authorization: "Bearer " + token }
+      });
+      const data = await res.json();
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function withdraw() {
+      const amount = document.getElementById("withdrawAmount").value;
+      const res = await fetch("http://localhost:3000/api/account/withdraw", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({ amount: parseInt(amount) })
+      });
+      const data = await res.json();
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function getInterest() {
+      const res = await fetch("http://localhost:3000/api/account/interest", {
+        headers: { Authorization: "Bearer " + token }
+      });
+      const data = await res.json();
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
