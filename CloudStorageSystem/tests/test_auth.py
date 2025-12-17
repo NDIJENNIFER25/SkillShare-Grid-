@@ -84,4 +84,5 @@ def test_authentication():
     print("=" * 70)
 
 if __name__ == '__main__':
+
     test_authentication()
