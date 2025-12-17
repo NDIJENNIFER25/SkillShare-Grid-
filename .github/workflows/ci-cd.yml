@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run tests
+        run: npm test --silent
+
       - name: Run npm audit (fail on high severity)
         run: |
           npm audit --audit-level=high
