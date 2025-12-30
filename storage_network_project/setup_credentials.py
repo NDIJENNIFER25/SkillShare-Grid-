@@ -29,4 +29,5 @@ def setup_credentials():
     print("\n✅ Credentials setup complete!")
 
 if __name__ == '__main__':
+
     setup_credentials()
