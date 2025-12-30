@@ -54,4 +54,5 @@ def print_otp(otp, email):
     print(f"📬 Email: {email}")
     print(f"🔑 OTP Code: {otp}")
     print(f"⏰ This code would be sent to the node operator")
+
     print("=" * 60)
