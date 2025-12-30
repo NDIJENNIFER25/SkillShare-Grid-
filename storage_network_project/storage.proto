@@ -43,4 +43,5 @@ message StatusResponse {
   int64 storage_used = 3;
   int64 storage_capacity = 4;
   double storage_percent = 5;
+
 }
