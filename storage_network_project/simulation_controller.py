@@ -111,4 +111,5 @@ def get_simulation():
     if sim_controller is None:
         sim_controller = SimulationController()
         sim_controller.start_simulation()
+
     return sim_controller
