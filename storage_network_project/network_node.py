@@ -203,4 +203,5 @@ if __name__ == '__main__':
     password = sys.argv[4]
 
     node = NetworkNode(node_id, port, username, password)
+
     node.start()
