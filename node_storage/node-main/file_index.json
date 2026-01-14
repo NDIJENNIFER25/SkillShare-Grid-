@@ -1,0 +1,16 @@
+{
+  "e6afe3224a08a00f53db9f348eddf2c521c7edbcf01f2dd78c0fbe46fe45e555": {
+    "file_id": "e6afe3224a08a00f53db9f348eddf2c521c7edbcf01f2dd78c0fbe46fe45e555",
+    "filename": "important.txt",
+    "path": "/documents/important.txt",
+    "size": 30,
+    "offset": 2048,
+    "vhd_id": "3a9210dc7f6aad5fc99db879c94bc32b",
+    "user_id": "a45a5c7d6b71b2ff",
+    "created_at": 1768173207.140652,
+    "hash": "066396c7c2fb5b2eb29bff0cfec68bb4769ab5f9ae7872c62467f2144a5593d9",
+    "stored_at": 1768173207.1439283,
+    "file_path": "node_storage\\node-main\\e6afe3224a08a00f53db9f348eddf2c521c7edbcf01f2dd78c0fbe46fe45e555.bin",
+    "checksum": "066396c7c2fb5b2eb29bff0cfec68bb4769ab5f9ae7872c62467f2144a5593d9"
+  }
+}

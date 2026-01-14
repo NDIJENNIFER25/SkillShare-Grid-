@@ -1,0 +1,18 @@
+{
+  "node-douala": {
+    "node_id": "node-douala",
+    "ip_address": "192.168.1.20",
+    "port": 5001,
+    "registered_at": 1768218206.1102395,
+    "last_seen": 1768218206.1102395,
+    "status": "active"
+  },
+  "node-bafoussam": {
+    "node_id": "node-bafoussam",
+    "ip_address": "192.168.1.30",
+    "port": 5002,
+    "registered_at": 1768218206.1112113,
+    "last_seen": 1768218206.1112113,
+    "status": "active"
+  }
+}

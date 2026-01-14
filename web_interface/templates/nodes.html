@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Nodes - Cloud Storage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+
+        .navbar a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .network-overview {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .network-overview h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .network-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .nodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .node-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .node-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .node-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .node-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .node-status {
+            background: #28a745;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .node-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .info-value {
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .connections {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .connections-title {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .connection-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .connection-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>☁️ Cloud Storage System</h1>
+        <div class="nav-links">
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/nodes">🌐 Nodes</a>
+            <span>👤 {{ username }}</span>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Network Overview -->
+        <div class="network-overview">
+            <h2>🌐 Distributed Storage Network</h2>
+            <div class="network-stats">
+                <div class="stat-card">
+                    <div class="stat-value">{{ network.total_nodes }}</div>
+                    <div class="stat-label">Active Nodes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ network.total_requests }}</div>
+                    <div class="stat-label">Total Requests</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ network.total_uploads }}</div>
+                    <div class="stat-label">Total Uploads</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ network.total_mb_transferred }} MB</div>
+                    <div class="stat-label">Data Transferred</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nodes Grid -->
+        <div class="nodes-grid">
+            {% for node in nodes %}
+            <div class="node-card">
+                <div class="node-header">
+                    <div class="node-name">🖥️ {{ node.node_id }}</div>
+                    <div class="node-status">{{ node.status }}</div>
+                </div>
+
+                <div class="node-info">
+                    <div class="info-row">
+                        <span class="info-label">IP Address:</span>
+                        <span class="info-value">{{ node.ip_address }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Capacity:</span>
+                        <span class="info-value">{{ node.storage_capacity_gb }} GB</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Bandwidth:</span>
+                        <span class="info-value">{{ node.bandwidth_mbps }} Mbps</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Requests:</span>
+                        <span class="info-value">{{ node.total_requests }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Uploads:</span>
+                        <span class="info-value">{{ node.total_uploads }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Downloads:</span>
+                        <span class="info-value">{{ node.total_downloads }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Data Transferred:</span>
+                        <span class="info-value">{{ node.total_mb_transferred }} MB</span>
+                    </div>
+                </div>
+
+                <div class="connections">
+                    <div class="connections-title">🔗 Connected to:</div>
+                    <div class="connection-tags">
+                        {% for conn in node.connected_nodes %}
+                        <span class="connection-tag">{{ conn }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

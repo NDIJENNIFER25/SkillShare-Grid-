@@ -1,0 +1,66 @@
+[
+  {
+    "id": "teacher_001",
+    "name": "Chief Nkeng",
+    "skill": "Traditional Carpentry",
+    "description": "Retired master carpenter with 35 years of experience",
+    "price_per_session": 2000,
+    "currency": "FCFA",
+    "rating": 4.8,
+    "total_students": 45,
+    "location": "Yaoundé",
+    "region": "Centre",
+    "available_days": [
+      "Saturday",
+      "Sunday"
+    ],
+    "available_times": [
+      "09:00-12:00",
+      "14:00-17:00"
+    ],
+    "profile_image": "chief_nkeng.jpg",
+    "skills_offered": [
+      "Furniture Making",
+      "Wood Carving",
+      "Tool Maintenance"
+    ],
+    "languages": [
+      "French",
+      "English",
+      "Ewondo"
+    ],
+    "joined_date": "2024-01-15"
+  },
+  {
+    "id": "teacher_002",
+    "name": "Madame Fotso",
+    "skill": "Tailoring & Fashion Design",
+    "description": "Expert seamstress specializing in traditional and modern fashion",
+    "price_per_session": 1500,
+    "currency": "FCFA",
+    "rating": 4.9,
+    "total_students": 67,
+    "location": "Douala",
+    "region": "Littoral",
+    "available_days": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "available_times": [
+      "10:00-13:00",
+      "15:00-18:00"
+    ],
+    "profile_image": "madame_fotso.jpg",
+    "skills_offered": [
+      "Dress Making",
+      "Pattern Design",
+      "Alterations"
+    ],
+    "languages": [
+      "French",
+      "Duala"
+    ],
+    "joined_date": "2024-02-01"
+  }
+]

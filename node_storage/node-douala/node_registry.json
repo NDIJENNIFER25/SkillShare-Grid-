@@ -1,0 +1,18 @@
+{
+  "node-yaounde": {
+    "node_id": "node-yaounde",
+    "ip_address": "192.168.1.10",
+    "port": 5000,
+    "registered_at": 1768218206.11221,
+    "last_seen": 1768218206.11221,
+    "status": "active"
+  },
+  "node-bafoussam": {
+    "node_id": "node-bafoussam",
+    "ip_address": "192.168.1.30",
+    "port": 5002,
+    "registered_at": 1768218206.1132085,
+    "last_seen": 1768218206.1132085,
+    "status": "active"
+  }
+}

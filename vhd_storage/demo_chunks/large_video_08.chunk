@@ -1,0 +1,13 @@
+CHUNK METADATA
+===============
+File: large_video_file.mp4
+Chunk Number: 8/10
+Chunk Size: 10MB
+Total File Size: 100MB
+Upload Status: In Progress
+Checksum: SHA256_HASH_0008
+
+CHUNK DATA
+==========
+[Binary video data - 10MB of actual video stream]
+This is simulated chunk 8 containing frames 70000-80000

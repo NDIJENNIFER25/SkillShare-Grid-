@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chunked Upload</title>
+    <style>
+        body { font-family: Arial; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; }
+        h1 { color: #667eea; }
+        .btn { padding: 20px 40px; margin: 10px; font-size: 18px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; color: white; }
+        .btn-blue { background: #667eea; }
+        .btn-green { background: #27ae60; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chunked Upload System</h1>
+
+        <div style="text-align: center; padding: 50px; border: 3px dashed #667eea; border-radius: 10px;">
+            <h2>Choose Upload Type</h2>
+            <br>
+
+            <button class="btn btn-blue" onclick="document.getElementById('fileInput').click()">
+                Upload Large Files
+            </button>
+
+            <button class="btn btn-green" onclick="document.getElementById('folderInput').click()">
+                Upload Entire Folder
+            </button>
+
+            <input type="file" id="fileInput" style="display:none" multiple>
+            <input type="file" id="folderInput" style="display:none" webkitdirectory>
+
+            <p style="margin-top: 30px; color: #666;">
+                Blue button = Upload files<br>
+                Green button = Upload folder
+            </p>
+        </div>
+
+        <br><br>
+        <a href="/dashboard" style="color: #667eea;">Back to Dashboard</a>
+    </div>
+
+    <script>
+        document.getElementById('fileInput').onchange = function(e) {
+            alert('Selected ' + e.target.files.length + ' files!');
+        };
+
+        document.getElementById('folderInput').onchange = function(e) {
+            alert('Selected folder with ' + e.target.files.length + ' files!');
+        };
+    </script>
+</body>
+</html>

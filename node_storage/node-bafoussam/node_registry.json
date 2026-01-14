@@ -1,0 +1,18 @@
+{
+  "node-yaounde": {
+    "node_id": "node-yaounde",
+    "ip_address": "192.168.1.10",
+    "port": 5000,
+    "registered_at": 1768218206.1132085,
+    "last_seen": 1768218206.1132085,
+    "status": "active"
+  },
+  "node-douala": {
+    "node_id": "node-douala",
+    "ip_address": "192.168.1.20",
+    "port": 5001,
+    "registered_at": 1768218206.1142168,
+    "last_seen": 1768218206.1142168,
+    "status": "active"
+  }
+}

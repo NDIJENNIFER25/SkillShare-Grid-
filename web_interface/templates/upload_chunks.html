@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chunked Upload</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; }
+        h1 { color: #667eea; margin-bottom: 30px; }
+        .upload-section { 
+            border: 3px dashed #667eea; 
+            padding: 50px; 
+            text-align: center; 
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+        }
+        .btn-file { background: #667eea; }
+        .btn-folder { background: #27ae60; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chunked Upload System</h1>
+        
+        <div class="upload-section">
+            <h2>Choose Upload Type</h2>
+            
+            <button class="btn btn-file" onclick="document.getElementById('fileInput').click()">
+                Upload Large Files
+            </button>
+            
+            <button class="btn btn-folder" onclick="document.getElementById('folderInput').click()">
+                Upload Entire Folder
+            </button>
+
+            <input type="file" id="fileInput" style="display:none" multiple onchange="handleFiles(this.files, 'file')">
+            <input type="file" id="folderInput" style="display:none" webkitdirectory onchange="handleFiles(this.files, 'folder')">
+        </div>
+
+        <div id="uploadProgress"></div>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/dashboard" style="color: #667eea;">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        function handleFiles(files, type) {
+            alert('Selected ' + files.length + ' files from ' + type);
+            for (let file of files) {
+                uploadFile(file);
+            }
+        }
+
+        async function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                const response = await fetch('/api/files/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    alert('File uploaded: ' + file.name);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

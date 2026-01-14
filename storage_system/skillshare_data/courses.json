@@ -1,0 +1,31 @@
+[
+  {
+    "id": "course_001",
+    "title": "Carpentry Fundamentals",
+    "teacher_id": "teacher_001",
+    "teacher_name": "Chief Nkeng",
+    "description": "Learn the basics of woodworking",
+    "duration": "8 weeks",
+    "sessions_per_week": 2,
+    "total_sessions": 16,
+    "price": 25000,
+    "currency": "FCFA",
+    "category": "Carpentry",
+    "level": "Beginner",
+    "materials": [
+      {
+        "name": "Introduction Video",
+        "size": "450MB",
+        "type": "video",
+        "chunks": 45
+      }
+    ],
+    "enrolled_students": 23,
+    "max_students": 30,
+    "nodes_replicated": [
+      "us-east",
+      "eu-west"
+    ],
+    "created_date": "2024-01-20"
+  }
+]

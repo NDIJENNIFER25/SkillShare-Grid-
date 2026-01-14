@@ -1,0 +1,18 @@
+{
+  "node-eu-west": {
+    "node_id": "node-eu-west",
+    "ip_address": "192.168.1.101",
+    "port": 5002,
+    "registered_at": 1768207159.641795,
+    "last_seen": 1768207159.641795,
+    "status": "active"
+  },
+  "node-asia": {
+    "node_id": "node-asia",
+    "ip_address": "192.168.1.102",
+    "port": 5003,
+    "registered_at": 1768207159.643224,
+    "last_seen": 1768207159.643224,
+    "status": "active"
+  }
+}

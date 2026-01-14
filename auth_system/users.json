@@ -1,0 +1,17 @@
+{
+  "ndijennifernkeh@gmail.com": {
+    "user_id": "405d64f2c7a88ee5",
+    "email": "ndijennifernkeh@gmail.com",
+    "full_name": "Jenn",
+    "location": "",
+    "password_hash": "018d383079b9a609949c323b5e182e9c8df292dd200dc7d4a33ab6b07e703376",
+    "salt": "1b1cb22b937e7b522f42b625bead02a48151f76ad2b11fc51532ce9db2f409b5",
+    "is_verified": true,
+    "is_2fa_enabled": false,
+    "storage_quota_gb": 5,
+    "storage_used_bytes": 100725,
+    "created_at": 1768216622.02136,
+    "last_login": 1768218240.3417761,
+    "login_count": 3
+  }
+}
