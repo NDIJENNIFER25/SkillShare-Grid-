@@ -1,0 +1,3 @@
+Hello! This is a test file transfer.
+   This file will be sent from my computer to Node2.
+   Testing the distributed storage network!

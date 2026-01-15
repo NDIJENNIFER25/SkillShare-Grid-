@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package storage;
+
+service FileTransferService {
+  rpc PrepareReceive (PrepareRequest) returns (PrepareResponse);
+  rpc TransferChunk (ChunkRequest) returns (ChunkResponse);
+  rpc GetStatus (StatusRequest) returns (StatusResponse);
+}
+
+message PrepareRequest {
+  string file_id = 1;
+  string file_name = 2;
+  int64 file_size = 3;
+  int32 total_chunks = 4;
+}
+
+message PrepareResponse {
+  bool ready = 1;
+  string message = 2;
+}
+
+message ChunkRequest {
+  string file_id = 1;
+  int32 chunk_id = 2;
+  bytes chunk_data = 3;
+  string checksum = 4;
+}
+
+message ChunkResponse {
+  bool success = 1;
+  int32 ack = 2;
+  string node_id = 3;
+}
+
+message StatusRequest {
+  string node_id = 1;
+}
+
+message StatusResponse {
+  string node_id = 1;
+  string status = 2;
+  int64 storage_used = 3;
+  int64 storage_capacity = 4;
+  double storage_percent = 5;
+
+}

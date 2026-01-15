@@ -194,18 +194,3 @@ Built as a comprehensive demonstration of distributed systems concepts including
 ---
 
 **For questions or issues, contact: ndijennifer.nkeh@ictuniversity.edu.cm**
-```
-
----
-
-## ✅ After Creating README.md:
-
-Your final project structure should look like:
-```
-CloudStorageSystem/
-├── README.md                    ← YOU JUST CREATED THIS!
-├── storage_system/
-├── auth_system/
-├── web_interface/
-├── vhd_storage/
-└── tests/
